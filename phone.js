@@ -61,15 +61,14 @@ const displayPhoneDetail = phone => {
     phoneDetails.textContent = '';
     const div = document.createElement('div');    
     div.innerHTML = `  
-    <div class = "card h-30 w-50 m-5 mx-auto rounded border-5 border-info p-5">
-    
-    <img src="${phone.image}" class="p-5 mb-n1" alt="...">   
-    
-    <div class= "mx-auto p-5">
-    <h5 class="card-title">${phone.name}</h5>
-    <h5 class="card-title">${phone.releaseDate}</h5>
-    <h5 class="card-title">${phone.brand}</h5>
-    </div>     
-    </div>`;    
+    <div class="card mx-auto cssCard" style="width: 18rem;">
+    <img src="${phone.image}" class="p-5 mx-auto" alt="...">
+  <div class="card-body mx-auto">
+  <h5 class="card-title">${phone.name}</h5>
+  <h5 class="card-title">${phone.releaseDate}</h5>
+  <h5 class="card-title">${phone.brand}</h5>
+  </div>
+</div>
+    `;    
     phoneDetails.appendChild(div);      
 }
