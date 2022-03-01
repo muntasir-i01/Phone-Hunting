@@ -1,30 +1,35 @@
-const searchPhone = () => {
+const searchPhone = async () => {
     const searchField = document.getElementById('search-field');
     const searchText = searchField.value;
     console.log(searchText);
-
+    /* clear data */
     searchField.value = '';
+    if(searchText == '') {
+        alert('Please, Search by Phone Name!')
+    }
+    /* load data */
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
 
-    fetch(url)
-        .then(res => res.json())
-        .then(data => displaySearchResult(data.data));
+    const res = await fetch(url);
+    const data = await res.json();
+    displaySearchResult(data.data);
 }
 
 const displaySearchResult = phones => {
     const searchResult = document.getElementById('search-result');
-    searchResult.textContent = "";
-    // Object.keys(phones).
+    searchResult.textContent = '';
+    if(phones.length == 0) {
+        alert('No Results Found');
+    }    
+    // searchResult.textContent = "";    
     phones.forEach(phone => {
-        /* console.log(phone); */
-        // console.log(phones[phone]);
         const div = document.createElement('div');
         div.classList.add('col');
         div.innerHTML =
             `<div class="col">
-        <div class="card h-100 m-5">
-          <img src="${phone.image}" class="card-img-top p-5" alt="..." height="500" width="100">
-          <div class="card-body">
+        <div class="card h-50 w-50 m-5">
+          <img src="${phone.image}" class="p-5 mb-0" alt="...">
+          <div class="card-body mx-auto">
             <h5 class="card-title">${phone.phone_name}</h5>
             
           </div>
@@ -37,29 +42,34 @@ const displaySearchResult = phones => {
         </div>
       </div>`;
         searchResult.appendChild(div);
-
     })
 }
 
 
-const loadPhoneDetail = slug => {
-    console.log(slug); 
+const loadPhoneDetail = async slug => {
+    console.log(slug);
     const url = `https://openapi.programming-hero.com/api/phone/${slug}`;
-    fetch(url)
-    .then(res => res.json())
-    .then(data => displayPhoneDetail(data.data));   
+
+    const res = await fetch(url);
+    const data = await res.json();
+    displayPhoneDetail(data.data);   
 }
 
 const displayPhoneDetail = phone => {
     console.log(phone);
     const phoneDetails = document.getElementById('phone-details');
-    const div = document.createElement('div');
-    div.classList.add('card');
-    div.innerHTML = `<img src="${phone.image}" class="card-img-top" alt="..." height="300" width="50">
-    <div class="card-body">
+    phoneDetails.textContent = '';
+    const div = document.createElement('div');    
+    div.innerHTML = `  
+    <div class = "card h-30 w-50 m-5 mx-auto rounded border-5 border-info p-5">
+    
+    <img src="${phone.image}" class="p-5 mb-n1" alt="...">   
+    
+    <div class= "mx-auto p-5">
     <h5 class="card-title">${phone.name}</h5>
     <h5 class="card-title">${phone.releaseDate}</h5>
     <h5 class="card-title">${phone.brand}</h5>
-    </div>`;
-    phoneDetails.appendChild(div);
+    </div>     
+    </div>`;    
+    phoneDetails.appendChild(div);      
 }
