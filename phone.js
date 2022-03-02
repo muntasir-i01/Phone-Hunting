@@ -78,7 +78,11 @@ const displayPhoneDetail = phone => {
                 <h5 class="card-title">Display: ${phone.mainFeatures.displaySize}</h5>
                 <h5 class="card-title">Chipset: ${phone.mainFeatures.chipSet}</h5>    
                 <h5 class="card-title">Sensors: ${phone.mainFeatures.sensors}</h5> 
-                <h5 class="card-title">Others: ${phone.others?phone.others: 'No'}</h5>      
+                <h5 class="card-title">Bluetooth: ${phone.others.Bluetooth}</h5>      
+                <h5 class="card-title">GPS: ${phone.others.GPS}</h5>      
+                <h5 class="card-title">NFC: ${phone.others.NFC}</h5>      
+                <h5 class="card-title">Radio: ${phone.others.Radio}</h5>      
+                <h5 class="card-title">WLAN: ${phone.others.WLAN}</h5>    
             </div>
     </div>  
 `;    
