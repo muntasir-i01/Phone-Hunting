@@ -4,15 +4,19 @@ const searchPhone = async () => {
     console.log(searchText);
     /* clear data */
     searchField.value = '';
-    if (searchText == '') {
+   /*  if (searchText == '') {
         alert('Please, Search by Phone Name!')
-    }
+    } */
     /* load data */
-    else {
+   if(searchText == 'iphone' || searchText == 'IPHONE' || searchText == 'samsung' || searchText == 'SAMSUNG' || searchText == 'oppo' || searchText == 'OPPO' 
+   || searchText == 'WATCH' || searchText == 'watch') {
         const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
         const res = await fetch(url);
         const data = await res.json();
         displaySearchResult(data.data.slice(0, 20));
+    }
+    else {
+        alert('Please, Search by Phone Name!');
     }
 }
 
@@ -64,24 +68,23 @@ const displayPhoneDetail = phone => {
     const div = document.createElement('div');
 
     div.innerHTML = ` 
-    <div class ="col-sm-12 mx-auto">
+    <div class ="col-sm-12">
         <img src="${phone.image}" class="p-5 mx-auto" alt="...">
-            <div class="mx-auto">
-                <h4 class="card-title">Name: ${phone.name}</h5>
-                <h5 class="card-title">Release Date: ${phone.releaseDate ? phone.releaseDate : 'Not Available'}</h5>
-                <h5 class="card-title">Brand: ${phone.brand}</h5>
-                <h5 class="card-title">Memory: ${phone.mainFeatures.memory}</h5>
-                <h5 class="card-title">Storage: ${phone.mainFeatures.storage}</h5>
-                <h5 class="card-title">Display: ${phone.mainFeatures.displaySize}</h5>
-                <h5 class="card-title">Chipset: ${phone.mainFeatures.chipSet}</h5>    
-                <h5 class="card-title">Sensors: ${phone.mainFeatures.sensors}</h5> 
-                <h5 class="card-title">Bluetooth: ${phone.others.Bluetooth}</h5>      
-                <h5 class="card-title">GPS: ${phone.others.GPS}</h5>      
-                <h5 class="card-title">NFC: ${phone.others.NFC}</h5>      
-                <h5 class="card-title">Radio: ${phone.others.Radio}</h5>      
-                <h5 class="card-title">WLAN: ${phone.others.WLAN}</h5>    
+            <div>
+                <h4>Name: ${phone.name}</h5>
+                <h5>Release Date: ${phone.releaseDate ? phone.releaseDate : 'Not Available'}</h5>
+                <h5>Brand: ${phone.brand}</h5>
+                <h5>Memory: ${phone.mainFeatures.memory}</h5>
+                <h5>Storage: ${phone.mainFeatures.storage}</h5>
+                <h5>Display: ${phone.mainFeatures.displaySize}</h5>
+                <h5>Chipset: ${phone.mainFeatures.chipSet}</h5>    
+                <h5>Sensors: ${phone.mainFeatures.sensors}</h5> 
+                <h5>Bluetooth: ${phone.others.Bluetooth}</h5>      
+                <h5>GPS: ${phone.others.GPS}</h5>      
+                <h5>NFC: ${phone.others.NFC}</h5>      
+                <h5>Radio: ${phone.others.Radio}</h5>      
+                <h5>WLAN: ${phone.others.WLAN}</h5>    
             </div>
-    </div>  
-`;
+    </div> `;
     phoneDetails.appendChild(div);
 }
