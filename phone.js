@@ -4,33 +4,31 @@ const searchPhone = async () => {
     console.log(searchText);
     /* clear data */
     searchField.value = '';
-    if(searchText == '') {
+    if (searchText == '') {
         alert('Please, Search by Phone Name!')
     }
     /* load data */
-    else  {
+    else {
         const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
-    const res = await fetch(url);
-    const data = await res.json();
-    
-    displaySearchResult(data.data.slice(0,20));   
-    
+        const res = await fetch(url);
+        const data = await res.json();
+        displaySearchResult(data.data.slice(0, 20));
     }
 }
 
 const displaySearchResult = phones => {
     const searchResult = document.getElementById('search-result');
     searchResult.textContent = '';
-    if(phones.length == 0) {
+    if (phones.length == 0) {
         alert('No Results Found');
-    }    
+    }
     // searchResult.textContent = "";    
     phones.forEach(phone => {
         const div = document.createElement('div');
         div.classList.add('col');
-        
+
         div.innerHTML =
-            `<div class="col">
+            `<div class="col-sm-12">
         <div class="card h-50 w-50 m-5">
           <img src="${phone.image}" class="p-5 mb-0" alt="...">
           <div class="card-body mx-auto">
@@ -46,7 +44,6 @@ const displaySearchResult = phones => {
         </div> 
       </div>`;
         searchResult.appendChild(div);
-        
     })
 }
 
@@ -56,8 +53,8 @@ const loadPhoneDetail = async slug => {
     const url = `https://openapi.programming-hero.com/api/phone/${slug}`;
 
     const res = await fetch(url);
-    const data = await res.json();    
-    displayPhoneDetail(data.data);   
+    const data = await res.json();
+    displayPhoneDetail(data.data);
 }
 
 const displayPhoneDetail = phone => {
@@ -67,11 +64,11 @@ const displayPhoneDetail = phone => {
     const div = document.createElement('div');
 
     div.innerHTML = ` 
-    <div class ="col mx-auto">
+    <div class ="col-sm-12 mx-auto">
         <img src="${phone.image}" class="p-5 mx-auto" alt="...">
             <div class="mx-auto">
                 <h4 class="card-title">Name: ${phone.name}</h5>
-                <h5 class="card-title">Release Date: ${phone.releaseDate?phone.releaseDate:'Not Available'}</h5>
+                <h5 class="card-title">Release Date: ${phone.releaseDate ? phone.releaseDate : 'Not Available'}</h5>
                 <h5 class="card-title">Brand: ${phone.brand}</h5>
                 <h5 class="card-title">Memory: ${phone.mainFeatures.memory}</h5>
                 <h5 class="card-title">Storage: ${phone.mainFeatures.storage}</h5>
@@ -85,6 +82,6 @@ const displayPhoneDetail = phone => {
                 <h5 class="card-title">WLAN: ${phone.others.WLAN}</h5>    
             </div>
     </div>  
-`;    
-    phoneDetails.appendChild(div);      
+`;
+    phoneDetails.appendChild(div);
 }
