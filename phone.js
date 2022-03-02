@@ -8,7 +8,7 @@ const searchPhone = async () => {
         alert('Please, Search by Phone Name!')
     }
     /* load data */
-    else {
+    else  {
         const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
     const res = await fetch(url);
     const data = await res.json();
@@ -71,7 +71,7 @@ const displayPhoneDetail = phone => {
         <img src="${phone.image}" class="p-5 mx-auto" alt="...">
             <div class="mx-auto">
                 <h4 class="card-title">Name: ${phone.name}</h5>
-                <h5 class="card-title">Release Date: ${phone.releaseDate?phone.releaseDate:'Not Availabe'}</h5>
+                <h5 class="card-title">Release Date: ${phone.releaseDate?phone.releaseDate:'Not Available'}</h5>
                 <h5 class="card-title">Brand: ${phone.brand}</h5>
                 <h5 class="card-title">Memory: ${phone.mainFeatures.memory}</h5>
                 <h5 class="card-title">Storage: ${phone.mainFeatures.storage}</h5>
