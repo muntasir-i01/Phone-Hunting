@@ -36,7 +36,8 @@ const displaySearchResult = phones => {
         <div class="card h-50 w-50 m-5">
           <img src="${phone.image}" class="p-5 mb-0" alt="...">
           <div class="card-body mx-auto">
-            <h5 class="card-title">${phone.phone_name}</h5>
+            <h5 class="card-title">${phone.phone_name}</h5>            
+            <h5 class="card-title">${phone.brand}</h5>
             
           </div>
           <div class="card-footer">
